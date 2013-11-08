@@ -1,0 +1,29 @@
+<div id="set_blank"> 
+	{% trans %}Write new <b>blank</b>{% endtrans %}
+</div>
+ 
+<div id="output"></div>	
+
+<div class="fill_today">
+	Todays Question 
+</div>	
+		
+<form method="post" action="{{ path('_add_respond') }}" id="frmFill">
+
+	<div class="sentence_index">
+		 <div id="start_prev">
+			<div class="sentence_tru"> 
+				<div class="center">
+					<div class="left_text">
+						<div id="h1_question">{{ content|showfileldsquestion|raw }}</div>  
+						<input type="hidden" id="q_id" value="{{ id }}">
+					 </div>
+					 <div style="clear:both; padding-top:25px;">
+						<input class="image_sub_q" type="submit" value="Fill">
+					 </div>
+				 </div>
+			</div>
+		</div>
+	</div>
+				
+</form>

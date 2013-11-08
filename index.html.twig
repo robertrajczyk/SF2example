@@ -1,0 +1,48 @@
+{% extends "AcmeServiceBundle::layout_new.html.twig" %}
+
+{% block title "Test SITE" %}
+  
+{% block content %} 
+	<div class="edit_page">
+		{% if page_content   %}
+			{{ page_content.pContent | raw  }} 
+		{% endif %}
+	</div> 
+		
+	<div id="responses_box_index">
+	 {% set var = 1 %}
+		{% for res in random_hight %} 
+			  
+			<div id="fill_{{ res.id }}" class="fill_me_in2 reponse_box  reponse_box_{{var}}"> 
+				<div class="response_right">
+					<div class="question_sen"  id="question_sen_{{ res.id }}">
+						<div>
+							<a href="{{lang}}/{{ res.question.id }}/{{ res.id }}">{{ res.question.content|response(res.field1,res.field2,res.field3)|raw   }}</a>
+						</div>
+					</div>
+					<div class="response_bottom">
+						<div class="response_bottom_vote">
+							<div class="response_left_bottom">		
+								<span class="ranking" id="ranking2_{{ res.id }}">{{ res.ranking }} </span>
+							</div>
+						</div>
+						<div class="response_bottom_username">
+							<span id="menu_time_{{ res.id }}" class="time time_hide"> {{ res.created|date('U')|ago|trans }} </span>
+							<a href="/u/{{ res.user.username }}/fills/{{ app.session.locale }}">{{ res.user.username }}</a>
+						</div> 
+					</div>
+				</div>	
+				<div class="clear"></div>
+			</div> 
+				 
+			 {% set var = var + 1 %}
+			 
+		{% endfor %}
+		<div class="clear"></div>
+	</div> 
+ 	
+	<div id="sentence"> 
+	 	{% include 'AcmeServiceBundle:Service:create_respond.html.twig' with { 'title':question.content, 'desc':'Set new Blanks' , 'content':question.content, 'id':question.id} %}
+	</div>
+
+{% endblock %}
